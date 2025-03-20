@@ -17,7 +17,7 @@ while(basiliskHp > 0)
     }
     int atack = random.Next(1,7) + random.Next(1,7);
     basiliskHp = basiliskHp - atack;
-    if(basiliskHp < 0)
+    if(basiliskHp <= 0)
     {
         Console.WriteLine($"{warriors[warriorTurn]} hits the baslisk for {atack}. Baslisk has 0 HP left!\nThe basslisk Falls and dies The warriors has a feast!");
     }
