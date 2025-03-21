@@ -15,7 +15,7 @@ while(basiliskHp > 0)
     {
         warriorTurn = 0;
     }
-    int atack = random.Next(1,7) + random.Next(1,7);
+    int atack = random.Next(1,5);
     basiliskHp = basiliskHp - atack;
     if(basiliskHp <= 0)
     {
