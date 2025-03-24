@@ -41,7 +41,10 @@ static void SimulateCombat(List<string> characterNames, string monsterName, int 
         monsterHP = monsterHP - atack;
         if(monsterHP <= 0)
         {
-            Console.WriteLine($"{characterNames[warriorTurn]} hits the {monsterName} for {atack}. {monsterName} has 0 HP left!\nThe {monsterName} Falls and dies");
+            if(characterNames.Count > 0)
+            {
+                Console.WriteLine($"{characterNames[warriorTurn]} hits the {monsterName} for {atack}. {monsterName} has 0 HP left!\nThe {monsterName} Falls and dies");
+            }
         }
         else
         {
