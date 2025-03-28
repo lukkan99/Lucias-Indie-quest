@@ -1,6 +1,6 @@
 ﻿Console.Write("Set price: ");
 string userOperations = "";
-int totalprice;
+double totalprice;
 string userinput = Console.ReadLine();
 List<string> userinputarray = userinput.Split().ToList();
 if((userinputarray.Count() > 3) ||((userinputarray.Count() > 1)&&(userinputarray.Count() < 3)))
@@ -17,7 +17,7 @@ else
     {
         case "+":
         case "plus":
-        totalprice = int.Parse(userinputarray[0]) + int.Parse(userinputarray[2]);
+        totalprice = double.Parse(userinputarray[0]) + double.Parse(userinputarray[2]);
         Console.WriteLine($"Total price : {totalprice}");
         break;
 
