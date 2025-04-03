@@ -1,14 +1,13 @@
 ﻿var random = new Random();
 int width = 50;
 int height = 50;
-
+int numberOfRoads = 10;
 var roads = new bool[width, height];
 
 static void GenerateRoad(bool[,] roads, int startX, int startY, int direction)
 {
     int x = startX;
     int y = startY;
-    int xmax = roads.GetLength(0);
 switch (direction)
 {
     case 0:
@@ -43,9 +42,9 @@ switch (direction)
 }
 
 
-for(int c = 0; c < 10; c++)
+for(int c = 0; c <= numberOfRoads; c++)
 {
-    GenerateRoad(roads,random.Next(1,width+1),random.Next(1,height+1),random.Next(0,4));
+    GenerateRoad(roads,random.Next(0,width),random.Next(0,height),random.Next(0,4));
 }
 
 for(int a = 0; a <height; a++)
