@@ -1,8 +1,8 @@
 ﻿var random = new Random();
-int width = 50;
-int height = 50;
+int width = 100;
+int height = 100;
 int numberOfRoads = 0;
-int numberOIntersection = 4;
+int numberOIntersection = 10;
 var roads = new bool[width, height];
 
 static void GenerateRoad(bool[,] roads, int startX, int startY, int direction)
