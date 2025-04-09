@@ -52,7 +52,7 @@ class Program
         for(int a = 0; a<6; a++)
         {
             currentLocation = locations[a];
-            Console.WriteLine($"Welcome to {currentLocation.Name}, {currentLocation.Discription}");
+            Console.WriteLine($"Welcome to {currentLocation.Name}, {currentLocation.Discription}\nPossible destinations are:");
             int currentNumber = 1;
             Console.WriteLine("Possible destinations are:");
             foreach(Location Neighbor in currentLocation.Neighbors)
