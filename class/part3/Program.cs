@@ -61,8 +61,23 @@ class Program
                 currentNumber ++;
             }
             Console.WriteLine("Where do you want to travel?");
-            pickedTraval = Convert.ToInt32(Console.ReadLine());
-            currentLocation = currentLocation.Neighbors[(pickedTraval-1)];
+            string pickTravalraw = Console.ReadLine();
+            if(pickTravalraw == "1" || pickTravalraw == "2" ||pickTravalraw == "3" || pickTravalraw == "4")
+            {
+            pickedTraval = Convert.ToInt32(pickTravalraw);
+            if(pickedTraval <= currentLocation.Neighbors.Count)
+            {
+                currentLocation = currentLocation.Neighbors[pickedTraval-1];
+            }else
+            {
+                Console.WriteLine("invallid input");
+            }
+            
+            }else
+            {
+                Console.WriteLine("invallid input");
+            }
+            
             
         }
 
