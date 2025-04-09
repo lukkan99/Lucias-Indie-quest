@@ -54,7 +54,7 @@ class Program
         while(true)
         {
             currentNumber = 1;
-            Console.WriteLine($"Welcome to {currentLocation.Name}, {currentLocation.Discription}/nPossible destinations are:");
+            Console.WriteLine($"Welcome to {currentLocation.Name}, {currentLocation.Discription}\nPossible destinations are:");
             foreach(Location Neighbor in currentLocation.Neighbors)
             {
                 Console.WriteLine($"{currentNumber}. {Neighbor.Name}");
