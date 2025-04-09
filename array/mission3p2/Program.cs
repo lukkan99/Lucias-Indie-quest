@@ -2,7 +2,7 @@
 int width = 100;
 int height = 100;
 int numberOfRoads = 0;
-int numberOIntersection = 10;
+int numberOIntersection = 5;
 var roads = new bool[width, height];
 
 static void GenerateRoad(bool[,] roads, int startX, int startY, int direction)
@@ -77,7 +77,7 @@ for(int a = 0; a <height; a++)
     }
     else
     {
-        Console.Write("⠀");
+        Console.Write(" ");
     }
     }
     Console.Write("\n");
