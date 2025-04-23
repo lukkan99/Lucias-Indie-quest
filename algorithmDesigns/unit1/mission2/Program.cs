@@ -30,13 +30,14 @@ List<string> heros = ["Jazlyn", "Theron", "Dayana","Rolando"];
 List<string> heros2 = ["Jazlyn", "Theron", "Dayana"];
 List<string> heros3 = ["Jazlyn", "Theron"];
 List<string> heros4 = ["Jazlyn"];
-
+List<string> heros5 =[];
 Console.WriteLine(JoinWithAnd(heros));
 Console.WriteLine(JoinWithAnd(heros2));
 Console.WriteLine(JoinWithAnd(heros3));
 Console.WriteLine(JoinWithAnd(heros4));
+Console.WriteLine(JoinWithAnd(heros5));
 Console.WriteLine(JoinWithAnd(heros,false));
 Console.WriteLine(JoinWithAnd(heros2,false));
 Console.WriteLine(JoinWithAnd(heros3,false));
 Console.WriteLine(JoinWithAnd(heros4,false));
-
+Console.WriteLine(JoinWithAnd(heros5,false));
