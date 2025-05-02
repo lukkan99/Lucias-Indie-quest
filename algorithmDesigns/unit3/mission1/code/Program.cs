@@ -7,6 +7,7 @@ var forrest = new bool[width, height];
 var roads = new bool[width, height];
 var river = new bool[width, height];
 var bidge = new bool[width, height];
+var usedspace = new bool[width, height];
 
 
 
