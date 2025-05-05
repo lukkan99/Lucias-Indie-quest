@@ -1,6 +1,6 @@
 ﻿var random = new Random();
-int width = 25;
-int height = 10;
+int width = 35;
+int height = 16;
 
 //2d arrys for all calc
 var forrest = new bool[width, height];
@@ -9,6 +9,18 @@ var river = new bool[width, height];
 var bidge = new bool[width, height];
 var usedspace = new bool[width, height];
 
+
+for (int y = 0; y < height; y++)
+{
+    for (int x = 0; x < width; x++)
+    {
+        if(y==height/2 && x == 2)
+        {
+            roads[x,y] = true;
+            usedspace[x,y]= true;
+        }
+    }
+}
 
 
 
@@ -41,6 +53,8 @@ for (int y = 0; y < height; y++)
             Console.Write("|");
             usedspace[x,y] = true;
         }
+
+        if(roads[x,y]==true) Console.Write("#");
 
         //write blank spaceses
         if(usedspace[x,y] == false) Console.Write(" ");
