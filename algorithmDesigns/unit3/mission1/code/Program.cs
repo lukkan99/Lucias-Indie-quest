@@ -1,6 +1,6 @@
 ﻿var random = new Random();
-int width = 45;
-int height = 15;
+int width = 25;
+int height = 10;
 
 //2d arrys for all calc
 var forrest = new bool[width, height];
@@ -21,7 +21,16 @@ for (int y = 0; y < height; y++)
         {
             Console.Write("+");
             usedspace[x,y] = true;
-        }// top and bottom border
+        }
+        if(x == width/2-5 && y==1)
+        {
+            Console.Write("ADVENTURE MAP");
+            for(int a =x ; a < x+13; a++)
+            {
+                usedspace[a,y] = true;
+            }
+        }
+        // top and bottom border
         if((x!=0 && y==0 && x!= width-1) || (x!=0 && y==height-1 && x!= width-1))
         {
             Console.Write("-");
