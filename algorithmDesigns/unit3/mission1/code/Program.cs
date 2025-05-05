@@ -13,7 +13,14 @@ var usedspace = new bool[width, height];
 for (int y = 0; y < height; y++)
 {
     for (int x = 0; x < width; x++)
-    {
+    {   //gen river
+        if(y==1&&x==width-5)
+        {
+          river[x,y] = true;
+          usedspace[x,y] = true;  
+        }
+
+        //gen roads
         if(y==height/2 && x == 2)
         {
             roads[x,y] = true;
@@ -31,32 +38,42 @@ for (int y = 0; y < height; y++)
     {   //boder coners
         if((x==0 && y ==0) || (x == width-1 && y== height-1) || (x==0 && y==height-1) || (y==0 && x==width-1))
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("+");
             usedspace[x,y] = true;
         }
         if(x == width/2-5 && y==1)
-        {
+        {   Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("ADVENTURE MAP");
             for(int a =x ; a < x+13; a++)
-            {
+            {   Console.ForegroundColor = ConsoleColor.Yellow;
                 usedspace[a,y] = true;
             }
         }
         // top and bottom border
         if((x!=0 && y==0 && x!= width-1) || (x!=0 && y==height-1 && x!= width-1))
-        {
+        {   Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("-");
             usedspace[x,y] = true;        
         }//side borders
         if((y!=0 && x==0 && y!=height-1) || (y!=0 && x==width-1 && y!=height-1))
-        {
+        {   Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("|");
             usedspace[x,y] = true;
+        }   
+            //Draw roads
+        if(roads[x,y]==true)
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+             Console.Write("#");
+        }   //draw rivers
+        if(river[x,y]==true)
+        {   Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write("|");
         }
 
-        if(roads[x,y]==true) Console.Write("#");
-
         //write blank spaceses
+        Console.ForegroundColor = ConsoleColor.White;
         if(usedspace[x,y] == false) Console.Write(" ");
 
     }
