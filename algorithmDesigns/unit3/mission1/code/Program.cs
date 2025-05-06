@@ -8,6 +8,8 @@ int height = 16;
 var forrest = new bool[width, height];
 var roads = new bool[width, height];
 var river = new bool[width, height];
+var riverright = new bool[width, height];
+var riverleft = new bool[width, height];
 var bidge = new bool[width, height];
 var usedspace = new bool[width, height];
 
@@ -15,17 +17,44 @@ var usedspace = new bool[width, height];
 for (int y = 0; y < height; y++)
 {
     for (int x = 0; x < width; x++)
-    {   //gen river
-        if(y==1&&x==width-5)
+    {  //gen river
+    
+        if(y==1&&x==width-6)
         {
-            for(int a = x; a > x-3; a--)
+            int riverx = x;
+            for(int b = y; b < height-1; b++)
             {
-                for(int b = y; b < height-1; b++)
+                int riverdirection = random.Next(0,3);
+                
+                switch(riverdirection)
                 {
+                case 0:
+                    for(int a = riverx; a > riverx-3; a--)
+                    {
                     river[a,b] = true;
                     usedspace[a,b] = true;
+                    }
+                break;
+                case 1:
+                    riverx--;
+                    for(int a = riverx; a > riverx-3; a--)
+                    {
+                    riverleft[a,b] = true;
+                    usedspace[a,b] = true;
+                    }
+                break;
+                case 2:
+                    riverx++;
+                    for(int a = riverx; a > riverx-3; a--)
+                    {
+                    riverright[a,b] = true;
+                    usedspace[a,b] = true;
+                    }
+                break;
+                    
                 }
             }
+            
         }
 
         //gen roads
@@ -78,6 +107,14 @@ for (int y = 0; y < height; y++)
         if(river[x,y]==true)
         {   Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write("|");
+        }
+        if(riverleft[x,y]==true)
+        {   Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write("/");
+        }
+        if(riverright[x,y]==true)
+        {   Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write("\\");
         }
 
         //write blank spaceses
