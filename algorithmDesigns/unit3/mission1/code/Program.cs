@@ -1,23 +1,31 @@
-﻿var random = new Random();
+﻿//int random
+var random = new Random();
+//set how big area map suld be
 int width = 35;
 int height = 16;
 
-//2d arrys for all calc
+//declear 2d arrys for all calc
 var forrest = new bool[width, height];
 var roads = new bool[width, height];
 var river = new bool[width, height];
 var bidge = new bool[width, height];
 var usedspace = new bool[width, height];
 
-
+//data perpering stage
 for (int y = 0; y < height; y++)
 {
     for (int x = 0; x < width; x++)
     {   //gen river
         if(y==1&&x==width-5)
         {
-          river[x,y] = true;
-          usedspace[x,y] = true;  
+            for(int a = x; a > x-3; a--)
+            {
+                for(int b = y; b < height-1; b++)
+                {
+                    river[a,b] = true;
+                    usedspace[a,b] = true;
+                }
+            }
         }
 
         //gen roads
