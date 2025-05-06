@@ -23,9 +23,9 @@ for (int y = 0; y < height; y++)
         {
             int riverx = x;
             for(int b = y; b < height-1; b++)
-            {
+            {   //pick if go leftdown or rightdown or only down
                 int riverdirection = random.Next(0,3);
-                
+                //seting data for how river following
                 switch(riverdirection)
                 {
                 case 0:
@@ -109,12 +109,7 @@ for (int y = 0; y < height; y++)
             Console.Write("|");
             usedspace[x,y] = true;
         }   
-            //Draw roads
-        if(roads[x,y]==true)
-        {
-            Console.ForegroundColor = ConsoleColor.White;
-             Console.Write("#");
-        }   //draw rivers
+           //draw rivers
         if(river[x,y]==true)
         {   Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write("|");
@@ -126,6 +121,11 @@ for (int y = 0; y < height; y++)
         if(riverright[x,y]==true)
         {   Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write("\\");
+        }   //drawing roads
+        if(roads[x,y]==true)
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+             Console.Write("#");
         }
 
         //write blank spaceses
