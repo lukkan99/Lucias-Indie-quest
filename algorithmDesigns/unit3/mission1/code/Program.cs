@@ -44,12 +44,23 @@ for (int y = 0; y < height; y++)
                     }
                 break;
                 case 2:
+                    if(riverx==width-2)
+                {
+                    for(int a = riverx; a > riverx-3; a--)
+                    {
+                        river[a,b] = true;
+                        usedspace[a,b] = true;
+                    }
+                }
+                else
+                {
                     riverx++;
                     for(int a = riverx; a > riverx-3; a--)
                     {
                     riverright[a,b] = true;
                     usedspace[a,b] = true;
                     }
+                }
                 break;
                     
                 }
