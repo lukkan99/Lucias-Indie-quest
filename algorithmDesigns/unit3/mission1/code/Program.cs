@@ -70,9 +70,39 @@ for (int y = 0; y < height; y++)
 
         //gen roads
         if(y==height/2 && x == 2)
-        {
-            roads[x,y] = true;
-            usedspace[x,y]= true;
+        {   
+            int roadY = y;
+            
+            for(int a=x; a<width-2; a++)
+            {
+                int roaddirection = random.Next(0,3);
+                switch(roaddirection)
+                {
+                    case 0:
+                    if(river[a,roadY]==true){river[a,roadY]=false;}
+                    if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
+                    if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
+                    roads[a,roadY] = true;
+                    usedspace[a,roadY]= true;
+                    break;
+                    case 1:
+                    roadY++;
+                    if(river[a,roadY]==true){river[a,roadY]=false;}
+                    if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
+                    if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
+                    roads[a,roadY] = true;
+                    usedspace[a,roadY]= true;
+                    break;
+                    case 2:
+                    roadY--;
+                    if(river[a,roadY]==true){river[a,roadY]=false;}
+                    if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
+                    if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
+                    roads[a,roadY] = true;
+                    usedspace[a,roadY]= true;
+                    break;
+                }
+            }
         }
     }
 }
@@ -111,15 +141,15 @@ for (int y = 0; y < height; y++)
         }   
            //draw rivers
         if(river[x,y]==true)
-        {   Console.ForegroundColor = ConsoleColor.Blue;
+        {   Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.Write("|");
         }
         if(riverleft[x,y]==true)
-        {   Console.ForegroundColor = ConsoleColor.Blue;
+        {   Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.Write("/");
         }
         if(riverright[x,y]==true)
-        {   Console.ForegroundColor = ConsoleColor.Blue;
+        {   Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.Write("\\");
         }   //drawing roads
         if(roads[x,y]==true)
