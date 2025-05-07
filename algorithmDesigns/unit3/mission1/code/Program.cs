@@ -73,34 +73,46 @@ for (int y = 0; y < height; y++)
         {   
             int roadY = y;
             
-            for(int a=x; a<width-2; a++)
+            for(int a=x; a<width-1; a++)
             {
-                int roaddirection = random.Next(0,3);
-                switch(roaddirection)
+                if(river[a,roadY]==true||riverleft[a,roadY]||riverright[a,roadY])
                 {
-                    case 0:
-                    if(river[a,roadY]==true){river[a,roadY]=false;}
-                    if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
-                    if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
-                    roads[a,roadY] = true;
-                    usedspace[a,roadY]= true;
-                    break;
-                    case 1:
-                    roadY++;
-                    if(river[a,roadY]==true){river[a,roadY]=false;}
-                    if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
-                    if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
-                    roads[a,roadY] = true;
-                    usedspace[a,roadY]= true;
-                    break;
-                    case 2:
-                    roadY--;
-                    if(river[a,roadY]==true){river[a,roadY]=false;}
-                    if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
-                    if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
-                    roads[a,roadY] = true;
-                    usedspace[a,roadY]= true;
-                    break;
+                    riverleft[a,roadY]=false;
+                    riverright[a,roadY]=false;
+                    river[a,roadY]=false;
+                    roads[a,roadY] =true;
+
+
+                }
+                else
+                {
+                    int roaddirection = random.Next(0,3);
+                    switch(roaddirection)
+                    {
+                        case 0:
+                        if(river[a,roadY]==true){river[a,roadY]=false;}
+                        if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
+                        if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
+                        roads[a,roadY] = true;
+                        usedspace[a,roadY]= true;
+                        break;
+                        case 1:
+                        roadY++;
+                        if(river[a,roadY]==true){river[a,roadY]=false;}
+                        if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
+                        if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
+                        roads[a,roadY] = true;
+                        usedspace[a,roadY]= true;
+                        break;
+                        case 2:
+                        roadY--;
+                        if(river[a,roadY]==true){river[a,roadY]=false;}
+                        if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
+                        if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
+                        roads[a,roadY] = true;
+                        usedspace[a,roadY]= true;
+                        break;
+                    }
                 }
             }
         }
