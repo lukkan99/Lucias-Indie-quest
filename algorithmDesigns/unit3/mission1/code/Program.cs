@@ -1,8 +1,8 @@
 ﻿//int random
 var random = new Random();
 //set how big area map suld be
-int width = 35;
-int height = 16;
+int width = 45;
+int height = 18;
 
 //declear 2d arrys for all calc
 var forrest = new bool[width, height];
@@ -69,6 +69,7 @@ for (int y = 0; y < height; y++)
         }
 
         //gen roads
+        bool pastfirstwatetile = false;
         if(y==height/2 && x == 2)
         {   
             int roadY = y;
@@ -76,7 +77,18 @@ for (int y = 0; y < height; y++)
             for(int a=x; a<width-1; a++)
             {
                 if(river[a,roadY]==true||riverleft[a,roadY]||riverright[a,roadY])
-                {
+                {   //second road
+                    if(pastfirstwatetile == false)
+                    {
+                        pastfirstwatetile= true;
+                        int newroadx = a-2;
+                        int newroady= roadY;
+                        for(int NewA = newroady; NewA < height-1; NewA++)
+                        {
+                            roads[newroadx,NewA] = true;
+                            usedspace[newroadx,NewA] = true;
+                        }
+                    }
                     riverleft[a,roadY]=false;
                     riverright[a,roadY]=false;
                     river[a,roadY]=false;
