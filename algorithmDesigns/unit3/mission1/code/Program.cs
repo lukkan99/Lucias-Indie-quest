@@ -85,6 +85,9 @@ for (int y = 0; y < height; y++)
                         int newroady= roadY;
                         for(int NewA = newroady; NewA < height-1; NewA++)
                         {
+                            if(river[newroadx,NewA]==true){river[newroadx,NewA]=false;}
+                            if(riverleft[newroadx,NewA]==true){riverleft[newroadx,NewA]=false;}
+                            if(riverright[newroadx,NewA]==true){riverright[newroadx,NewA]=false;}
                             roads[newroadx,NewA] = true;
                             usedspace[newroadx,NewA] = true;
                         }
