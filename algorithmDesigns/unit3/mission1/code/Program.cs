@@ -137,17 +137,15 @@ for (int y = 0; y < height; y++)
                 }
             }
         }
-        if((x<width/3) && roads[x,y] == false && y!=0 && y!=height-1 && usedspace[x,y]==false)
-        {
-            if(roads[x,y])
-            {
-                forrest[x,y] = false;
-                
-            }else
+        if((x<width/5) && roads[x,y] == false && y!=0 && y!=height-1 && usedspace[x,y]==false)
+        {   
+            
+            if(random.Next(0,x)< 1)
             {
             forrest[x,y] = true;
             usedspace[x,y] = true;
             }
+            
         }
     }
 }
