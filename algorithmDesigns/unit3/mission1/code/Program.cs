@@ -108,27 +108,27 @@ for (int y = 0; y < height; y++)
                     switch(roaddirection)
                     {
                         case 0:
-                        if(river[a,roadY]==true){river[a,roadY]=false;}
-                        if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
-                        if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
+                        //if(river[a,roadY]==true){river[a,roadY]=false;}
+                        //if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
+                        //if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
                         roads[a,roadY] = true;
                         forrest[a,roadY] = false;
                         usedspace[a,roadY]= true;
                         break;
                         case 1:
                         roadY++;
-                        if(river[a,roadY]==true){river[a,roadY]=false;}
-                        if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
-                        if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
+                        //if(river[a,roadY]==true){river[a,roadY]=false;}
+                        //if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
+                        //if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
                         roads[a,roadY] = true;
                         forrest[a,roadY] = false;
                         usedspace[a,roadY]= true;
                         break;
                         case 2:
                         roadY--;
-                        if(river[a,roadY]==true){river[a,roadY]=false;}
-                        if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
-                        if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
+                        //if(river[a,roadY]==true){river[a,roadY]=false;}
+                        //if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
+                        //if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
                         roads[a,roadY] = true;
                         forrest[a,roadY] = false;
                         usedspace[a,roadY]= true;
@@ -136,7 +136,7 @@ for (int y = 0; y < height; y++)
                     }
                 }
             }
-        }
+        } //gen forrest
         if((x<width/5) && roads[x,y] == false && y!=0 && y!=height-1 && usedspace[x,y]==false)
         {   
             
@@ -199,7 +199,7 @@ for (int y = 0; y < height; y++)
         {
             Console.ForegroundColor = ConsoleColor.White;
              Console.Write("#");
-        }
+        } //draw forrest
         if(forrest[x,y]==true)
         {
             Console.ForegroundColor = ConsoleColor.Green;
