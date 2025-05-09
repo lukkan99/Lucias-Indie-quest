@@ -70,7 +70,7 @@ for (int y = 0; y < height; y++)
 
         //gen roads
         bool pastfirstwatetile = false;
-        if(y==height/2 && x == 2)
+        if(y==height/2 && x == 0)
         {   
             int roadY = y;
             
@@ -96,6 +96,7 @@ for (int y = 0; y < height; y++)
                     riverright[a,roadY]=false;
                     river[a,roadY]=false;
                     roads[a,roadY] =true;
+                    usedspace[a,roadY] =true;
 
 
                 }
@@ -130,6 +131,11 @@ for (int y = 0; y < height; y++)
                     }
                 }
             }
+        }
+        if((x<width/3) && roads[x,y] == false && y!=0 && y!=height-1 && usedspace[x,y]==false)
+        {
+            forrest[x,y] = true;
+            usedspace[x,y] = true;
         }
     }
 }
@@ -183,6 +189,11 @@ for (int y = 0; y < height; y++)
         {
             Console.ForegroundColor = ConsoleColor.White;
              Console.Write("#");
+        }
+        if(forrest[x,y]==true)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("A");
         }
 
         //write blank spaceses
