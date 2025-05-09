@@ -89,6 +89,7 @@ for (int y = 0; y < height; y++)
                             if(riverleft[newroadx,NewA]==true){riverleft[newroadx,NewA]=false;}
                             if(riverright[newroadx,NewA]==true){riverright[newroadx,NewA]=false;}
                             roads[newroadx,NewA] = true;
+                            forrest[newroadx,NewA] = false;
                             usedspace[newroadx,NewA] = true;
                         }
                     }
@@ -96,6 +97,7 @@ for (int y = 0; y < height; y++)
                     riverright[a,roadY]=false;
                     river[a,roadY]=false;
                     roads[a,roadY] =true;
+                    forrest[a,roadY] = false;
                     usedspace[a,roadY] =true;
 
 
@@ -110,6 +112,7 @@ for (int y = 0; y < height; y++)
                         if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
                         if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
                         roads[a,roadY] = true;
+                        forrest[a,roadY] = false;
                         usedspace[a,roadY]= true;
                         break;
                         case 1:
@@ -118,6 +121,7 @@ for (int y = 0; y < height; y++)
                         if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
                         if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
                         roads[a,roadY] = true;
+                        forrest[a,roadY] = false;
                         usedspace[a,roadY]= true;
                         break;
                         case 2:
@@ -126,6 +130,7 @@ for (int y = 0; y < height; y++)
                         if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
                         if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
                         roads[a,roadY] = true;
+                        forrest[a,roadY] = false;
                         usedspace[a,roadY]= true;
                         break;
                     }
@@ -134,8 +139,15 @@ for (int y = 0; y < height; y++)
         }
         if((x<width/3) && roads[x,y] == false && y!=0 && y!=height-1 && usedspace[x,y]==false)
         {
+            if(roads[x,y])
+            {
+                forrest[x,y] = false;
+                
+            }else
+            {
             forrest[x,y] = true;
             usedspace[x,y] = true;
+            }
         }
     }
 }
