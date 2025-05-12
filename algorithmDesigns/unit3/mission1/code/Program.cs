@@ -84,7 +84,22 @@ for (int y = 0; y < height; y++)
                         int newroadx = a-2;
                         int newroady= roadY;
                         for(int NewA = newroady; NewA < height-1; NewA++)
-                        {
+                        {   if(river[newroadx,NewA]||riverleft[newroadx,NewA]||river[newroadx,NewA])
+                            {newroadx--;}
+                            else
+                            {
+                                switch(random.Next(1,4))
+                                {
+                                case 1:
+                                break;
+                                case 2:
+                                newroadx++;
+                                break;
+                                case 3:
+                                newroadx--;
+                                break;
+                                }
+                            }
                             if(river[newroadx,NewA]==true){river[newroadx,NewA]=false;}
                             if(riverleft[newroadx,NewA]==true){riverleft[newroadx,NewA]=false;}
                             if(riverright[newroadx,NewA]==true){riverright[newroadx,NewA]=false;}
