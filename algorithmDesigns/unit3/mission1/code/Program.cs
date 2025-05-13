@@ -231,7 +231,7 @@ for (int y = 0; y < height; y++)
         }
         if(bidge[x,y]==true)
         {
-            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.Write("=");
         }
 
