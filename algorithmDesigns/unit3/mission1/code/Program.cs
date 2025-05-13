@@ -109,8 +109,16 @@ for (int y = 0; y < height; y++)
                         }
                     }
                     riverleft[a,roadY]=false;
+                    riverleft[a,roadY-1]=false; riverleft[a-1,roadY-1]=false; riverleft[a+1,roadY-1]=false;
+                    riverleft[a,roadY+1]=false; riverleft[a-1,roadY+1]=false; riverleft[a+1,roadY+1]=false;
+                    riverright[a,roadY+1]=false; riverright[a-1,roadY+1]=false; riverright[a+1,roadY+1]=false;
+                    riverright[a,roadY-1]=false; riverright[a-1,roadY-1]=false; riverright[a+1,roadY-1]=false;
                     riverright[a,roadY]=false;
                     river[a,roadY]=false;
+                    river[a,roadY-1]=false; river[a-1,roadY-1]=false; river[a+1,roadY-1]=false;
+                    river[a,roadY+1]=false; river[a-1,roadY+1]=false; river[a+1,roadY+1]=false;
+                    bidge[a,roadY-1]=true;
+                    bidge[a,roadY+1]=true; 
                     roads[a,roadY] =true;
                     forrest[a,roadY] = false;
                     usedspace[a,roadY] =true;
@@ -219,6 +227,11 @@ for (int y = 0; y < height; y++)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("A");
+        }
+        if(bidge[x,y]==true)
+        {
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.Write("=");
         }
 
         //write blank spaceses
