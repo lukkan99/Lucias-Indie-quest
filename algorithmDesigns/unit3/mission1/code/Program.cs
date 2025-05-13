@@ -2,7 +2,7 @@
 var random = new Random();
 //set how big area map suld be
 int width = 45;
-int height = 18;
+int height = 20;
 
 //declear 2d arrys for all calc
 var forrest = new bool[width, height];
@@ -139,7 +139,8 @@ for (int y = 0; y < height; y++)
                         usedspace[a,roadY]= true;
                         break;
                         case 1:
-                        roadY++;
+                        if(roadY!<height-3)roadY++;
+                        
                         //if(river[a,roadY]==true){river[a,roadY]=false;}
                         //if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
                         //if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
@@ -148,7 +149,7 @@ for (int y = 0; y < height; y++)
                         usedspace[a,roadY]= true;
                         break;
                         case 2:
-                        roadY--;
+                        if(roadY!> 1)roadY--;
                         //if(river[a,roadY]==true){river[a,roadY]=false;}
                         //if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
                         //if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
