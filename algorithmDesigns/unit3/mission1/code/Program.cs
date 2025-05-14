@@ -149,7 +149,13 @@ for (int y = 0; y < height; y++)
 
 
                 }
+                else if(bidge[a,roadY-1]||bidge[a,roadY+1])
+                {
+                    roads[a,roadY] = true;
+                    usedspace[a,roadY]= true;
+                }
                 else
+                
                 {
                     int roaddirection = random.Next(0,3);
                     switch(roaddirection)
