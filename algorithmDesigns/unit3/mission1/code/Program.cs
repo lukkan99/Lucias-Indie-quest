@@ -77,10 +77,32 @@ for (int y = 0; y < height; y++)
             for(int a=x; a<width-1; a++)
             {
                 if(river[a,roadY]==true||riverleft[a,roadY]||riverright[a,roadY])
-                {   //second road
+                {   //second road and bridg
                     if(pastfirstwatetile == false)
                     {
                         pastfirstwatetile= true;
+                        int bridgex = a-1;
+                        for(int bridgea = bridgex; bridgea<a+4&&bridgex!=width-1; bridgea++)
+                        {
+                            if(river[bridgea,roadY+1]==true ||river[bridgea,roadY-1]==true||riverleft[bridgea,roadY+1]==true ||riverleft[bridgea,roadY-1]==true||riverright[bridgea,roadY+1]==true ||riverright[bridgea,roadY-1]==true)
+                            {
+                                river[bridgea,roadY+1]=false;
+                                river[bridgea,roadY-1]=false;
+                                riverleft[bridgea,roadY+1]=false;
+                                riverleft[bridgea,roadY-1]=false;
+                                riverright[bridgea,roadY+1]=false;
+                                riverright[bridgea,roadY-1]=false;
+                            }
+                            bidge[bridgea,roadY+1]=true;
+                            usedspace[bridgea,roadY+1]=true;
+                            if(roadY-1!=0)
+                            {
+                            bidge[bridgea,roadY-1]=true;
+                            usedspace[bridgea,roadY-1]=true;
+                            }
+                        
+                        }
+                        
                         int newroadx = a-2;
                         int newroady= roadY;
                         for(int NewA = newroady; NewA < height-1; NewA++)
@@ -109,19 +131,21 @@ for (int y = 0; y < height; y++)
                         }
                     }
                     riverleft[a,roadY]=false;
-                    riverleft[a,roadY-1]=false; riverleft[a-1,roadY-1]=false; riverleft[a+1,roadY-1]=false;
-                    riverleft[a,roadY+1]=false; riverleft[a-1,roadY+1]=false; riverleft[a+1,roadY+1]=false;
-                    riverright[a,roadY+1]=false; riverright[a-1,roadY+1]=false; riverright[a+1,roadY+1]=false;
-                    riverright[a,roadY-1]=false; riverright[a-1,roadY-1]=false; riverright[a+1,roadY-1]=false;
+                    //riverleft[a,roadY-1]=false; riverleft[a-1,roadY-1]=false; riverleft[a+1,roadY-1]=false;
+                   // riverleft[a,roadY+1]=false; riverleft[a-1,roadY+1]=false; riverleft[a+1,roadY+1]=false;
+                    //riverright[a,roadY+1]=false; riverright[a-1,roadY+1]=false; riverright[a+1,roadY+1]=false;
+                    //riverright[a,roadY-1]=false; riverright[a-1,roadY-1]=false; riverright[a+1,roadY-1]=false;
                     riverright[a,roadY]=false;
                     river[a,roadY]=false;
-                    river[a,roadY-1]=false; river[a-1,roadY-1]=false; river[a+1,roadY-1]=false;
-                    river[a,roadY+1]=false; river[a-1,roadY+1]=false; river[a+1,roadY+1]=false;
-                    bidge[a,roadY-1]=true;
-                    bidge[a,roadY+1]=true; 
+                    //river[a,roadY-1]=false; river[a-1,roadY-1]=false; river[a+1,roadY-1]=false;
+                    //river[a,roadY+1]=false; river[a-1,roadY+1]=false; river[a+1,roadY+1]=false;
+                    //bidge[a,roadY-1]=true;
+                    //bidge[a,roadY+1]=true; 
                     roads[a,roadY] =true;
                     forrest[a,roadY] = false;
                     usedspace[a,roadY] =true;
+                    //usedspace[a,roadY-1]=true;
+                    //usedspace[a,roadY+1]=true;
 
 
                 }
