@@ -1,8 +1,8 @@
 ﻿//int random
 var random = new Random();
 //set how big area map suld be
-int width = 45;
-int height = 20;
+int width = 40;
+int height = 18;
 
 //declear 2d arrys for all calc
 var forrest = new bool[width, height];
@@ -82,7 +82,7 @@ for (int y = 0; y < height; y++)
                     {
                         pastfirstwatetile= true;
                         int bridgex = a-1;
-                        for(int bridgea = bridgex; bridgea<a+4&&bridgex!=width-1; bridgea++)
+                        for(int bridgea = bridgex; bridgea<a+4&&bridgex!=width-2; bridgea++)
                         {
                             if(river[bridgea,roadY+1]==true ||river[bridgea,roadY-1]==true||riverleft[bridgea,roadY+1]==true ||riverleft[bridgea,roadY-1]==true||riverright[bridgea,roadY+1]==true ||riverright[bridgea,roadY-1]==true)
                             {
@@ -93,8 +93,11 @@ for (int y = 0; y < height; y++)
                                 riverright[bridgea,roadY+1]=false;
                                 riverright[bridgea,roadY-1]=false;
                             }
+                            if(roadY+1!=height-1)
+                            {
                             bidge[bridgea,roadY+1]=true;
                             usedspace[bridgea,roadY+1]=true;
+                            }
                             if(roadY-1!=0)
                             {
                             bidge[bridgea,roadY-1]=true;
@@ -106,7 +109,7 @@ for (int y = 0; y < height; y++)
                         int newroadx = a-2;
                         int newroady= roadY;
                         for(int NewA = newroady; NewA < height-1; NewA++)
-                        {   if(river[newroadx,NewA]||riverleft[newroadx,NewA]||river[newroadx,NewA])
+                        {   if(river[newroadx,NewA]||riverleft[newroadx,NewA]||river[newroadx,NewA]||bidge[newroadx,NewA])
                             {newroadx--;}
                             else
                             {
@@ -149,7 +152,7 @@ for (int y = 0; y < height; y++)
 
 
                 }
-                else if(bidge[a,roadY-1]||bidge[a,roadY+1])
+                else if(bidge[a,roadY-1])
                 {
                     roads[a,roadY] = true;
                     usedspace[a,roadY]= true;
@@ -169,7 +172,7 @@ for (int y = 0; y < height; y++)
                         usedspace[a,roadY]= true;
                         break;
                         case 1:
-                        if(roadY!<height-3)roadY++;
+                        if(roadY!<height-2)roadY++;
                         
                         //if(river[a,roadY]==true){river[a,roadY]=false;}
                         //if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
@@ -179,7 +182,7 @@ for (int y = 0; y < height; y++)
                         usedspace[a,roadY]= true;
                         break;
                         case 2:
-                        if(roadY!> 1)roadY--;
+                        if(roadY!> 2)roadY--;
                         //if(river[a,roadY]==true){river[a,roadY]=false;}
                         //if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
                         //if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
