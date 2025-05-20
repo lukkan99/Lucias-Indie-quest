@@ -11,7 +11,7 @@ var river = new bool[width, height];
 var riverright = new bool[width, height];
 var riverleft = new bool[width, height];
 var bidge = new bool[width, height];
-var usedspace = new bool[width, height];
+
 
 //data perpering stage
 for (int y = 0; y < height; y++)
@@ -32,7 +32,6 @@ for (int y = 0; y < height; y++)
                     for(int a = riverx; a > riverx-3; a--)
                     {
                     river[a,b] = true;
-                    usedspace[a,b] = true;
                     }
                 break;
                 case 1:
@@ -40,7 +39,6 @@ for (int y = 0; y < height; y++)
                     for(int a = riverx; a > riverx-3; a--)
                     {
                     riverleft[a,b] = true;
-                    usedspace[a,b] = true;
                     }
                 break;
                 case 2:
@@ -49,7 +47,6 @@ for (int y = 0; y < height; y++)
                     for(int a = riverx; a > riverx-3; a--)
                     {
                         river[a,b] = true;
-                        usedspace[a,b] = true;
                     }
                 }
                 else
@@ -58,7 +55,6 @@ for (int y = 0; y < height; y++)
                     for(int a = riverx; a > riverx-3; a--)
                     {
                     riverright[a,b] = true;
-                    usedspace[a,b] = true;
                     }
                 }
                 break;
@@ -96,12 +92,10 @@ for (int y = 0; y < height; y++)
                             if(roadY+1!=height-1)
                             {
                             bidge[bridgea,roadY+1]=true;
-                            usedspace[bridgea,roadY+1]=true;
                             }
                             if(roadY-1!=0)
                             {
                             bidge[bridgea,roadY-1]=true;
-                            usedspace[bridgea,roadY-1]=true;
                             }
                         
                         }
@@ -130,7 +124,6 @@ for (int y = 0; y < height; y++)
                             if(riverright[newroadx,NewA]==true){riverright[newroadx,NewA]=false;}
                             roads[newroadx,NewA] = true;
                             forrest[newroadx,NewA] = false;
-                            usedspace[newroadx,NewA] = true;
                         }
                     }
                     riverleft[a,roadY]=false;
@@ -146,7 +139,6 @@ for (int y = 0; y < height; y++)
                     //bidge[a,roadY+1]=true; 
                     roads[a,roadY] =true;
                     forrest[a,roadY] = false;
-                    usedspace[a,roadY] =true;
                     //usedspace[a,roadY-1]=true;
                     //usedspace[a,roadY+1]=true;
 
@@ -155,7 +147,6 @@ for (int y = 0; y < height; y++)
                 else if(bidge[a,roadY-1])
                 {
                     roads[a,roadY] = true;
-                    usedspace[a,roadY]= true;
                 }
                 else
                 
@@ -169,7 +160,6 @@ for (int y = 0; y < height; y++)
                         //if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
                         roads[a,roadY] = true;
                         forrest[a,roadY] = false;
-                        usedspace[a,roadY]= true;
                         break;
                         case 1:
                         if(roadY!<height-2)roadY++;
@@ -179,7 +169,6 @@ for (int y = 0; y < height; y++)
                         //if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
                         roads[a,roadY] = true;
                         forrest[a,roadY] = false;
-                        usedspace[a,roadY]= true;
                         break;
                         case 2:
                         if(roadY!> 2)roadY--;
@@ -188,19 +177,17 @@ for (int y = 0; y < height; y++)
                         //if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
                         roads[a,roadY] = true;
                         forrest[a,roadY] = false;
-                        usedspace[a,roadY]= true;
                         break;
                     }
                 }
             }
         } //gen forrest
-        if((x<width/5) && roads[x,y] == false && y!=0 && y!=height-1 && usedspace[x,y]==false)
+        if((x<width/5) && roads[x,y] == false && y!=0 && y!=height-1)
         {   
             
             if(random.Next(0,x)< 1)
             {
             forrest[x,y] = true;
-            usedspace[x,y] = true;
             }
             
         }
@@ -218,59 +205,65 @@ for (int y = 0; y < height; y++)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("+");
-            usedspace[x,y] = true;
+            continue;
         }
         if(x == width/2-5 && y==1)
         {   Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("ADVENTURE MAP");
-            for(int a =x ; a < x+13; a++)
-            {   Console.ForegroundColor = ConsoleColor.Yellow;
-                usedspace[a,y] = true;
-            }
+            string title = "ADVENTURE MAP";
+            Console.Write(title);
+            x += title.Length - 1;
+            continue;
         }
         // top and bottom border
         if((x!=0 && y==0 && x!= width-1) || (x!=0 && y==height-1 && x!= width-1))
         {   Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("-");
-            usedspace[x,y] = true;        
+            Console.Write("-"); 
+            continue;      
         }//side borders
         if((y!=0 && x==0 && y!=height-1) || (y!=0 && x==width-1 && y!=height-1))
         {   Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("|");
-            usedspace[x,y] = true;
+            continue;
         }   
            //draw rivers
         if(river[x,y]==true)
         {   Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.Write("|");
+            continue;
         }
         if(riverleft[x,y]==true)
         {   Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.Write("/");
+            continue;
         }
         if(riverright[x,y]==true)
         {   Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.Write("\\");
+            continue;
         }   //drawing roads
         if(roads[x,y]==true)
         {
             Console.ForegroundColor = ConsoleColor.White;
              Console.Write("#");
+             continue;
         } //draw forrest
         if(forrest[x,y]==true)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("A");
+            continue;
         }
         if(bidge[x,y]==true)
         {
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.Write("=");
+            continue;
         }
 
         //write blank spaceses
         Console.ForegroundColor = ConsoleColor.White;
-        if(usedspace[x,y] == false) Console.Write(" ");
+        //if(usedspace[x,y] == false) Console.Write(" ");
+        Console.Write(" ");
 
     }
     Console.WriteLine();
