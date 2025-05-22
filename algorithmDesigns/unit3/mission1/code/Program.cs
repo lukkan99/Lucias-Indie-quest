@@ -107,14 +107,14 @@ for (int y = 0; y < height; y++)
                             {newroadx--;}
                             else
                             {
-                                switch(random.Next(1,4))
+                                switch(random.Next(1,6))
                                 {
-                                case 1:
-                                break;
                                 case 2:
                                 newroadx++;
                                 break;
                                 case 3:
+                                case 4:
+                                case 5:
                                 newroadx--;
                                 break;
                                 }
