@@ -7,9 +7,7 @@ int height = 18;
 //declear 2d arrys for all calc
 var forrest = new bool[width, height];
 var roads = new bool[width, height];
-var river = new bool[width, height];
-var riverright = new bool[width, height];
-var riverleft = new bool[width, height];
+var river = new int[width, height];//down 1 left 2 right 3
 var bidge = new bool[width, height];
 
 
@@ -31,14 +29,14 @@ for (int y = 0; y < height; y++)
                 case 0:
                     for(int a = riverx; a > riverx-3; a--)
                     {
-                    river[a,b] = true;
+                    river[a,b] = 1;
                     }
                 break;
                 case 1:
                     riverx--;
                     for(int a = riverx; a > riverx-3; a--)
                     {
-                    riverleft[a,b] = true;
+                    river[a,b] = 2;
                     }
                 break;
                 case 2:
@@ -46,7 +44,7 @@ for (int y = 0; y < height; y++)
                 {
                     for(int a = riverx; a > riverx-3; a--)
                     {
-                        river[a,b] = true;
+                        river[a,b] = 1;
                     }
                 }
                 else
@@ -54,7 +52,7 @@ for (int y = 0; y < height; y++)
                     riverx++;
                     for(int a = riverx; a > riverx-3; a--)
                     {
-                    riverright[a,b] = true;
+                    river[a,b] = 3;
                     }
                 }
                 break;
@@ -72,7 +70,7 @@ for (int y = 0; y < height; y++)
             
             for(int a=x; a<width-1; a++)
             {
-                if(river[a,roadY]==true||riverleft[a,roadY]||riverright[a,roadY])
+                if(river[a,roadY]==1||river[a,roadY]==2||river[a,roadY]==3)
                 {   //second road and bridg
                     if(pastfirstwatetile == false)
                     {
@@ -80,14 +78,10 @@ for (int y = 0; y < height; y++)
                         int bridgex = a-1;
                         for(int bridgea = bridgex; bridgea<a+4&&bridgex!=width-2; bridgea++)
                         {
-                            if(river[bridgea,roadY+1]==true ||river[bridgea,roadY-1]==true||riverleft[bridgea,roadY+1]==true ||riverleft[bridgea,roadY-1]==true||riverright[bridgea,roadY+1]==true ||riverright[bridgea,roadY-1]==true)
+                            if(river[bridgea,roadY+1]==1 ||river[bridgea,roadY-1]==1||river[bridgea,roadY+1]==2 ||river[bridgea,roadY-1]==2||river[bridgea,roadY+1]==3 ||river[bridgea,roadY-1]==3)
                             {
-                                river[bridgea,roadY+1]=false;
-                                river[bridgea,roadY-1]=false;
-                                riverleft[bridgea,roadY+1]=false;
-                                riverleft[bridgea,roadY-1]=false;
-                                riverright[bridgea,roadY+1]=false;
-                                riverright[bridgea,roadY-1]=false;
+                                river[bridgea,roadY+1]=0;
+                                river[bridgea,roadY-1]=0;
                             }
                             if(roadY+1!=height-1)
                             {
@@ -103,7 +97,7 @@ for (int y = 0; y < height; y++)
                         int newroadx = a-2;
                         int newroady= roadY;
                         for(int NewA = newroady; NewA < height-1; NewA++)
-                        {   if(river[newroadx,NewA]||riverleft[newroadx,NewA]||river[newroadx,NewA]||bidge[newroadx,NewA])
+                        {   if(river[newroadx,NewA]==1||river[newroadx,NewA]==2||river[newroadx,NewA]==1||bidge[newroadx,NewA])
                             {newroadx--;}
                             else
                             {
@@ -119,20 +113,20 @@ for (int y = 0; y < height; y++)
                                 break;
                                 }
                             }
-                            if(river[newroadx,NewA]==true){river[newroadx,NewA]=false;}
-                            if(riverleft[newroadx,NewA]==true){riverleft[newroadx,NewA]=false;}
-                            if(riverright[newroadx,NewA]==true){riverright[newroadx,NewA]=false;}
+                            if(river[newroadx,NewA]==1){river[newroadx,NewA]=0;}
+                            if(river[newroadx,NewA]==2){river[newroadx,NewA]=0;}
+                            if(river[newroadx,NewA]==3){river[newroadx,NewA]=0;}
                             roads[newroadx,NewA] = true;
                             forrest[newroadx,NewA] = false;
                         }
                     }
-                    riverleft[a,roadY]=false;
+                
                     //riverleft[a,roadY-1]=false; riverleft[a-1,roadY-1]=false; riverleft[a+1,roadY-1]=false;
                    // riverleft[a,roadY+1]=false; riverleft[a-1,roadY+1]=false; riverleft[a+1,roadY+1]=false;
                     //riverright[a,roadY+1]=false; riverright[a-1,roadY+1]=false; riverright[a+1,roadY+1]=false;
                     //riverright[a,roadY-1]=false; riverright[a-1,roadY-1]=false; riverright[a+1,roadY-1]=false;
-                    riverright[a,roadY]=false;
-                    river[a,roadY]=false;
+                    
+                    river[a,roadY]=0;
                     //river[a,roadY-1]=false; river[a-1,roadY-1]=false; river[a+1,roadY-1]=false;
                     //river[a,roadY+1]=false; river[a-1,roadY+1]=false; river[a+1,roadY+1]=false;
                     //bidge[a,roadY-1]=true;
@@ -226,17 +220,17 @@ for (int y = 0; y < height; y++)
             continue;
         }   
            //draw rivers
-        if(river[x,y]==true)
+        if(river[x,y]==1)
         {   Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.Write("|");
             continue;
         }
-        if(riverleft[x,y]==true)
+        if(river[x,y]==2)
         {   Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.Write("/");
             continue;
         }
-        if(riverright[x,y]==true)
+        if(river[x,y]==3)
         {   Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.Write("\\");
             continue;
