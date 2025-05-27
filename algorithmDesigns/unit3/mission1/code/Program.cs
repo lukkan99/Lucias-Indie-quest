@@ -97,27 +97,30 @@ for (int y = 0; y < height; y++)
                         
                         int newroadx = a-1;
                         int newroady= roadY;
-                        for(int NewA = newroady; NewA < height-1; NewA++)
-                        {   if(tiles[newroadx,NewA]=="ri1"||tiles[newroadx,NewA]=="ri2"||tiles[newroadx,NewA]=="ri1"||tiles[newroadx,NewA]=="bi")
-                            {newroadx--;}
+                        tiles[newroadx-1, newroady] = "ro";
+                        if (tiles[newroadx - 1, newroady - 1] == "ro") tiles[newroadx - 1, newroady - 1] = null;
+                        for (int NewA = newroady; NewA < height - 1; NewA++)
+                        {
+                            if (tiles[newroadx, NewA] == "ri1" || tiles[newroadx, NewA] == "ri2" || tiles[newroadx, NewA] == "ri1" || tiles[newroadx, NewA] == "bi")
+                            { newroadx--; }
                             else
                             {
-                                switch(random.Next(1,6))
+                                switch (random.Next(1, 6))
                                 {
-                                case 2:
-                                newroadx++;
-                                break;
-                                case 3:
-                                case 4:
-                                case 5:
-                                newroadx--;
-                                break;
+                                    case 2:
+                                        newroadx++;
+                                        break;
+                                    case 3:
+                                    case 4:
+                                    case 5:
+                                        newroadx--;
+                                        break;
                                 }
                             }
                             //if(river[newroadx,NewA]==1){river[newroadx,NewA]=0;}
                             //if(river[newroadx,NewA]==2){river[newroadx,NewA]=0;}
                             //if(river[newroadx,NewA]==3){river[newroadx,NewA]=0;}
-                            tiles[newroadx,NewA] = "ro";
+                            tiles[newroadx, NewA] = "ro";
                             //forrest[newroadx,NewA] = false;
                         }
                     }
