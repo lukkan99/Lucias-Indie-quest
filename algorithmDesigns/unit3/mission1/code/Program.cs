@@ -5,10 +5,11 @@ int width = 40;
 int height = 18;
 
 //declear 2d arrys for all calc
-var forrest = new bool[width, height];
-var roads = new bool[width, height];
-var river = new int[width, height];//down 1 left 2 right 3
-var bidge = new bool[width, height];
+var tiles = new string[width, height]; //ri1(river) ri2(riverleft) ri3(riverright) fo(forrest) ro(roads) bi(brige)
+//var forrest = new bool[width, height];
+//var roads = new bool[width, height];
+//var river = new int[width, height];//down 1 left 2 right 3
+//var bidge = new bool[width, height];
 
 
 //data perpering stage
@@ -29,14 +30,14 @@ for (int y = 0; y < height; y++)
                 case 0:
                     for(int a = riverx; a > riverx-3; a--)
                     {
-                    river[a,b] = 1;
+                    tiles[a,b] = "ri1";
                     }
                 break;
                 case 1:
                     riverx--;
                     for(int a = riverx; a > riverx-3; a--)
                     {
-                    river[a,b] = 2;
+                    tiles[a,b] = "ri2";
                     }
                 break;
                 case 2:
@@ -44,7 +45,7 @@ for (int y = 0; y < height; y++)
                 {
                     for(int a = riverx; a > riverx-3; a--)
                     {
-                        river[a,b] = 1;
+                        tiles[a,b] = "ri1";
                     }
                 }
                 else
@@ -52,7 +53,7 @@ for (int y = 0; y < height; y++)
                     riverx++;
                     for(int a = riverx; a > riverx-3; a--)
                     {
-                    river[a,b] = 3;
+                    tiles[a,b] = "ri3";
                     }
                 }
                 break;
@@ -70,7 +71,7 @@ for (int y = 0; y < height; y++)
             
             for(int a=x; a<width-1; a++)
             {
-                if(river[a,roadY]==1||river[a,roadY]==2||river[a,roadY]==3)
+                if(tiles[a,roadY]=="ri1"||tiles[a,roadY]=="ri2"||tiles[a,roadY]=="ri3")
                 {   //second road and bridg
                     if(pastfirstwatetile == false)
                     {
@@ -78,18 +79,18 @@ for (int y = 0; y < height; y++)
                         int bridgex = a-1;
                         for(int bridgea = bridgex; bridgea<a+4&&bridgex!=width-2; bridgea++)
                         {
-                            if(river[bridgea,roadY+1]==1 ||river[bridgea,roadY-1]==1||river[bridgea,roadY+1]==2 ||river[bridgea,roadY-1]==2||river[bridgea,roadY+1]==3 ||river[bridgea,roadY-1]==3)
+                            if(tiles[bridgea,roadY+1]=="ri1" ||tiles[bridgea,roadY-1]=="ri1"||tiles[bridgea,roadY+1]=="ri2" ||tiles[bridgea,roadY-1]=="ri2"||tiles[bridgea,roadY+1]=="ri3" ||tiles[bridgea,roadY-1]=="ri3")
                             {
-                                river[bridgea,roadY+1]=0;
-                                river[bridgea,roadY-1]=0;
+                                //river[bridgea,roadY+1]=0;
+                                //river[bridgea,roadY-1]=0;
                             }
                             if(roadY+1!=height-1)
                             {
-                            bidge[bridgea,roadY+1]=true;
+                            tiles[bridgea,roadY+1]="bi";
                             }
                             if(roadY-1!=0)
                             {
-                            bidge[bridgea,roadY-1]=true;
+                            tiles[bridgea,roadY-1]="bi";
                             }
                         
                         }
@@ -97,7 +98,7 @@ for (int y = 0; y < height; y++)
                         int newroadx = a-2;
                         int newroady= roadY;
                         for(int NewA = newroady; NewA < height-1; NewA++)
-                        {   if(river[newroadx,NewA]==1||river[newroadx,NewA]==2||river[newroadx,NewA]==1||bidge[newroadx,NewA])
+                        {   if(tiles[newroadx,NewA]=="ri1"||tiles[newroadx,NewA]=="ri2"||tiles[newroadx,NewA]=="ri1"||tiles[newroadx,NewA]=="bi")
                             {newroadx--;}
                             else
                             {
@@ -113,11 +114,11 @@ for (int y = 0; y < height; y++)
                                 break;
                                 }
                             }
-                            if(river[newroadx,NewA]==1){river[newroadx,NewA]=0;}
-                            if(river[newroadx,NewA]==2){river[newroadx,NewA]=0;}
-                            if(river[newroadx,NewA]==3){river[newroadx,NewA]=0;}
-                            roads[newroadx,NewA] = true;
-                            forrest[newroadx,NewA] = false;
+                            //if(river[newroadx,NewA]==1){river[newroadx,NewA]=0;}
+                            //if(river[newroadx,NewA]==2){river[newroadx,NewA]=0;}
+                            //if(river[newroadx,NewA]==3){river[newroadx,NewA]=0;}
+                            tiles[newroadx,NewA] = "ro";
+                            //forrest[newroadx,NewA] = false;
                         }
                     }
                 
@@ -126,21 +127,21 @@ for (int y = 0; y < height; y++)
                     //riverright[a,roadY+1]=false; riverright[a-1,roadY+1]=false; riverright[a+1,roadY+1]=false;
                     //riverright[a,roadY-1]=false; riverright[a-1,roadY-1]=false; riverright[a+1,roadY-1]=false;
                     
-                    river[a,roadY]=0;
+                    //river[a,roadY]=0;
                     //river[a,roadY-1]=false; river[a-1,roadY-1]=false; river[a+1,roadY-1]=false;
                     //river[a,roadY+1]=false; river[a-1,roadY+1]=false; river[a+1,roadY+1]=false;
                     //bidge[a,roadY-1]=true;
                     //bidge[a,roadY+1]=true; 
-                    roads[a,roadY] =true;
-                    forrest[a,roadY] = false;
+                    tiles[a,roadY] ="ro";
+                    //forrest[a,roadY] = false;
                     //usedspace[a,roadY-1]=true;
                     //usedspace[a,roadY+1]=true;
 
 
                 }
-                else if(bidge[a,roadY-1])
+                else if(tiles[a,roadY-1]=="bi")
                 {
-                    roads[a,roadY] = true;
+                    tiles[a,roadY] = "ro";
                 }
                 else
                 
@@ -152,8 +153,8 @@ for (int y = 0; y < height; y++)
                         //if(river[a,roadY]==true){river[a,roadY]=false;}
                         //if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
                         //if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
-                        roads[a,roadY] = true;
-                        forrest[a,roadY] = false;
+                        tiles[a,roadY] = "ro";
+                        //forrest[a,roadY] = false;
                         break;
                         case 1:
                         if(roadY!<height-2)roadY++;
@@ -161,27 +162,27 @@ for (int y = 0; y < height; y++)
                         //if(river[a,roadY]==true){river[a,roadY]=false;}
                         //if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
                         //if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
-                        roads[a,roadY] = true;
-                        forrest[a,roadY] = false;
+                        tiles[a,roadY] = "ro";
+                        //forrest[a,roadY] = false;
                         break;
                         case 2:
                         if(roadY!> 2)roadY--;
                         //if(river[a,roadY]==true){river[a,roadY]=false;}
                         //if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
                         //if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
-                        roads[a,roadY] = true;
-                        forrest[a,roadY] = false;
+                        tiles[a,roadY] = "ro";
+                        //forrest[a,roadY] = false;
                         break;
                     }
                 }
             }
         } //gen forrest
-        if((x<width/5) && roads[x,y] == false && y!=0 && y!=height-1)
+        if((x<width/5) && tiles[x,y] != "ro" && y!=0 && y!=height-1)
         {   
             
             if(random.Next(0,x)< 1)
             {
-            forrest[x,y] = true;
+            tiles[x,y] = "fo";
             }
             
         }
@@ -220,34 +221,34 @@ for (int y = 0; y < height; y++)
             continue;
         }   
            //draw rivers
-        if(river[x,y]==1)
+        if(tiles[x,y]=="ri1")
         {   Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.Write("|");
             continue;
         }
-        if(river[x,y]==2)
+        if(tiles[x,y]=="ri2")
         {   Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.Write("/");
             continue;
         }
-        if(river[x,y]==3)
+        if(tiles[x,y]=="ri3")
         {   Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.Write("\\");
             continue;
         }   //drawing roads
-        if(roads[x,y]==true)
+        if(tiles[x,y]=="ro")
         {
             Console.ForegroundColor = ConsoleColor.White;
              Console.Write("#");
              continue;
         } //draw forrest
-        if(forrest[x,y]==true)
+        if(tiles[x,y]=="fo")
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("A");
             continue;
         }
-        if(bidge[x,y]==true)
+        if(tiles[x,y]=="bi")
         {
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.Write("=");
