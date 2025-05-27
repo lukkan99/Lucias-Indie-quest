@@ -95,7 +95,7 @@ for (int y = 0; y < height; y++)
                         
                         }
                         
-                        int newroadx = a-2;
+                        int newroadx = a-1;
                         int newroady= roadY;
                         for(int NewA = newroady; NewA < height-1; NewA++)
                         {   if(tiles[newroadx,NewA]=="ri1"||tiles[newroadx,NewA]=="ri2"||tiles[newroadx,NewA]=="ri1"||tiles[newroadx,NewA]=="bi")
