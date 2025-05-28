@@ -25,6 +25,7 @@ for (int y = 0; y < height; y++)
             {   //pick if go leftdown or rightdown or only down
                 int riverdirection = random.Next(0,3);
                 //seting data for how river following
+                
                 switch(riverdirection)
                 {
                 case 0:
@@ -95,7 +96,7 @@ for (int y = 0; y < height; y++)
                         
                         }
                         
-                        int newroadx = a-1;
+                        int newroadx = a-3;
                         int newroady= roadY;
                         tiles[newroadx-1, newroady] = "ro";
                         if (tiles[newroadx - 1, newroady - 1] == "ro") tiles[newroadx - 1, newroady - 1] = null;
@@ -149,33 +150,40 @@ for (int y = 0; y < height; y++)
                 else
                 
                 {
-                    int roaddirection = random.Next(0,3);
-                    switch(roaddirection)
+                    if (a<width-3&&(tiles[a+1,roadY] == "ri1"||tiles[a+2,roadY] == "ri1"||tiles[a+3,roadY] == "ri1"||tiles[a+1,roadY] == "ri2"||tiles[a+2,roadY] == "ri2"||tiles[a+3,roadY] == "ri2"||tiles[a+1,roadY] == "ri3"||tiles[a+2,roadY] == "ri3"||tiles[a+3,roadY] == "ri3"))
                     {
-                        case 0:
-                        //if(river[a,roadY]==true){river[a,roadY]=false;}
-                        //if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
-                        //if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
-                        tiles[a,roadY] = "ro";
-                        //forrest[a,roadY] = false;
-                        break;
-                        case 1:
-                        if(roadY!<height-2)roadY++;
-                        
-                        //if(river[a,roadY]==true){river[a,roadY]=false;}
-                        //if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
-                        //if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
-                        tiles[a,roadY] = "ro";
-                        //forrest[a,roadY] = false;
-                        break;
-                        case 2:
-                        if(roadY!> 2)roadY--;
-                        //if(river[a,roadY]==true){river[a,roadY]=false;}
-                        //if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
-                        //if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
-                        tiles[a,roadY] = "ro";
-                        //forrest[a,roadY] = false;
-                        break;
+                        tiles[a, roadY] = "ro";
+                    }
+                    else
+                    {
+                        int roaddirection = random.Next(0, 3);
+                        switch (roaddirection)
+                        {
+                            case 0:
+                                //if(river[a,roadY]==true){river[a,roadY]=false;}
+                                //if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
+                                //if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
+                                tiles[a, roadY] = "ro";
+                                //forrest[a,roadY] = false;
+                                break;
+                            case 1:
+                                if (roadY! < height - 2) roadY++;
+
+                                //if(river[a,roadY]==true){river[a,roadY]=false;}
+                                //if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
+                                //if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
+                                tiles[a, roadY] = "ro";
+                                //forrest[a,roadY] = false;
+                                break;
+                            case 2:
+                                if (roadY! > 2) roadY--;
+                                //if(river[a,roadY]==true){river[a,roadY]=false;}
+                                //if(riverleft[a,roadY]==true){riverleft[a,roadY]=false;}
+                                //if(riverright[a,roadY]==true){riverright[a,roadY]=false;}
+                                tiles[a, roadY] = "ro";
+                                //forrest[a,roadY] = false;
+                                break;
+                        }
                     }
                 }
             }
