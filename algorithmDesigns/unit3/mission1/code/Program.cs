@@ -150,7 +150,7 @@ for (int y = 0; y < height; y++)
                 else
                 
                 {
-                    if (a<width-3&&(tiles[a+1,roadY] == "ri1"||tiles[a+2,roadY] == "ri1"||tiles[a+3,roadY] == "ri1"||tiles[a+1,roadY] == "ri2"||tiles[a+2,roadY] == "ri2"||tiles[a+3,roadY] == "ri2"||tiles[a+1,roadY] == "ri3"||tiles[a+2,roadY] == "ri3"||tiles[a+3,roadY] == "ri3"))
+                    if (a<width-3&&(tiles[a+1,roadY] == "ri1"||tiles[a+2,roadY] == "ri1"||tiles[a+3,roadY] == "ri1"||tiles[a+1,roadY] == "ri2"||tiles[a+2,roadY] == "ri2"||tiles[a+3,roadY] == "ri2"||tiles[a+1,roadY] == "ri3"||tiles[a+2,roadY] == "ri3"||tiles[a+3,roadY] == "ri3")||a>3&&(tiles[a-1,roadY+1] == "bi"||tiles[a-2,roadY+1] == "bi"||tiles[a-3,roadY+1] == "bi"))
                     {
                         tiles[a, roadY] = "ro";
                     }
