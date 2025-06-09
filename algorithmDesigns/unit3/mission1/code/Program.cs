@@ -1,8 +1,8 @@
 ﻿//int random
 var random = new Random();
 //set how big area map suld be
-int width = 40;
-int height = 18;
+int width = 75;
+int height = 20;
 
 //declear 2d arrys for all calc
 var tiles = new string[width, height]; //ri1(river) ri2(riverleft) ri3(riverright) fo(forrest) ro(roads) bi(brige)
@@ -18,7 +18,7 @@ for (int y = 0; y < height; y++)
     for (int x = 0; x < width; x++)
     {  //gen river
     
-        if(y==1&&x==width-6)
+        if(y==1&&x==width * 3 / 4)
         {
             int riverx = x;
             for(int b = y; b < height-1; b++)
