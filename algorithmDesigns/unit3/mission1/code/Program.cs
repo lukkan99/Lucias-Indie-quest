@@ -13,92 +13,109 @@ var tiles = new string[width, height]; //ri1(river) ri2(riverleft) ri3(riverrigh
 
 
 //data perpering stage
+
+static List<int> GenerateCurve(int height, int intestive = 3)//max of 6 
+{
+    var random = new Random();
+    var curveValues = new List<int>();
+
+    int riverdirection = random.Next(intestive, 6);
+
+    for (int x = 1; x < height; x++)
+    {
+        
+    }
+
+    return curveValues;
+}
+
+
 for (int y = 0; y < height; y++)
 {
     for (int x = 0; x < width; x++)
     {  //gen river
-    
-        if(y==1&&x==width * 3 / 4)
+
+        if (y == 1 && x == width * 3 / 4)
         {
             int riverx = x;
-            for(int b = y; b < height-1; b++)
+            for (int b = y; b < height - 1; b++)
             {   //pick if go leftdown or rightdown or only down
-                int riverdirection = random.Next(0,3);
+                int riverdirection = random.Next(0, 3);
                 //seting data for how river following
-                
-                switch(riverdirection)
+
+                switch (riverdirection)
                 {
-                case 0:
-                    for(int a = riverx; a > riverx-3; a--)
-                    {
-                    tiles[a,b] = "ri1";
-                    }
-                break;
-                case 1:
-                    riverx--;
-                    for(int a = riverx; a > riverx-3; a--)
-                    {
-                    tiles[a,b] = "ri2";
-                    }
-                break;
-                case 2:
-                    if(riverx==width-2)
-                {
-                    for(int a = riverx; a > riverx-3; a--)
-                    {
-                        tiles[a,b] = "ri1";
-                    }
-                }
-                else
-                {
-                    riverx++;
-                    for(int a = riverx; a > riverx-3; a--)
-                    {
-                    tiles[a,b] = "ri3";
-                    }
-                }
-                break;
-                    
+                    case 0:
+                        for (int a = riverx; a > riverx - 3; a--)
+                        {
+                            tiles[a, b] = "ri1";
+                        }
+                        break;
+                    case 1:
+                        riverx--;
+                        for (int a = riverx; a > riverx - 3; a--)
+                        {
+                            tiles[a, b] = "ri2";
+                        }
+                        break;
+                    case 2:
+                        if (riverx == width - 2)
+                        {
+                            for (int a = riverx; a > riverx - 3; a--)
+                            {
+                                tiles[a, b] = "ri1";
+                            }
+                        }
+                        else
+                        {
+                            riverx++;
+                            for (int a = riverx; a > riverx - 3; a--)
+                            {
+                                tiles[a, b] = "ri3";
+                            }
+                        }
+                        break;
+
                 }
             }
-            
+
         }
 
         //gen roads
         bool pastfirstwatetile = false;
-        if(y==height/2 && x == 0)
-        {   
+        if (y == height / 2 && x == 0)
+        {
             int roadY = y;
-            
-            for(int a=x; a<width-1; a++)
+
+            for (int a = x; a < width - 1; a++)
             {
-                if(tiles[a,roadY]=="ri1"||tiles[a,roadY]=="ri2"||tiles[a,roadY]=="ri3")
+                if (tiles[a, roadY] == "ri1" || tiles[a, roadY] == "ri2" || tiles[a, roadY] == "ri3")
                 {   //second road and bridg
-                    if(pastfirstwatetile == false)
+                    if (pastfirstwatetile == false)
                     {
-                        pastfirstwatetile= true;
-                        int bridgex = a-1;
-                        for(int bridgea = bridgex; bridgea<a+4&&bridgex!=width-2; bridgea++)
+                        pastfirstwatetile = true;
+                        int bridgex = a - 1;
+                        for (int bridgea = bridgex; bridgea < a + 4 && bridgex != width - 2; bridgea++)
                         {
-                            if(tiles[bridgea,roadY+1]=="ri1" ||tiles[bridgea,roadY-1]=="ri1"||tiles[bridgea,roadY+1]=="ri2" ||tiles[bridgea,roadY-1]=="ri2"||tiles[bridgea,roadY+1]=="ri3" ||tiles[bridgea,roadY-1]=="ri3")
+                            if (tiles[bridgea, roadY + 1] == "ri1" || tiles[bridgea, roadY - 1] == "ri1" || tiles[bridgea, roadY + 1] == "ri2" || tiles[bridgea, roadY - 1] == "ri2" || tiles[bridgea, roadY + 1] == "ri3" || tiles[bridgea, roadY - 1] == "ri3")
                             {
                                 //river[bridgea,roadY+1]=0;
                                 //river[bridgea,roadY-1]=0;
                             }
-                            if(roadY+1!=height-1)
+                            if (roadY + 1 != height - 1)
                             {
-                            tiles[bridgea,roadY+1]="bi";
+                                tiles[bridgea, roadY + 1] = "bi";
                             }
-                            if(roadY-1!=0)
+                            if (roadY - 1 != 0)
                             {
-                            tiles[bridgea,roadY-1]="bi";
+                                tiles[bridgea, roadY - 1] = "bi";
                             }
-                        
+
                         }
-                        
-                        int newroadx = a-3;
-                        int newroady= roadY;
-                        tiles[newroadx-1, newroady] = "ro";
+
+                        int newroadx = a - 3;
+                        int newroady = roadY;
+                        tiles[newroadx - 1, newroady] = "ro";
                         if (tiles[newroadx - 1, newroady - 1] == "ro") tiles[newroadx - 1, newroady - 1] = null;
                         for (int NewA = newroady; NewA < height - 1; NewA++)
                         {
@@ -125,32 +142,32 @@ for (int y = 0; y < height; y++)
                             //forrest[newroadx,NewA] = false;
                         }
                     }
-                
+
                     //riverleft[a,roadY-1]=false; riverleft[a-1,roadY-1]=false; riverleft[a+1,roadY-1]=false;
-                   // riverleft[a,roadY+1]=false; riverleft[a-1,roadY+1]=false; riverleft[a+1,roadY+1]=false;
+                    // riverleft[a,roadY+1]=false; riverleft[a-1,roadY+1]=false; riverleft[a+1,roadY+1]=false;
                     //riverright[a,roadY+1]=false; riverright[a-1,roadY+1]=false; riverright[a+1,roadY+1]=false;
                     //riverright[a,roadY-1]=false; riverright[a-1,roadY-1]=false; riverright[a+1,roadY-1]=false;
-                    
+
                     //river[a,roadY]=0;
                     //river[a,roadY-1]=false; river[a-1,roadY-1]=false; river[a+1,roadY-1]=false;
                     //river[a,roadY+1]=false; river[a-1,roadY+1]=false; river[a+1,roadY+1]=false;
                     //bidge[a,roadY-1]=true;
                     //bidge[a,roadY+1]=true; 
-                    tiles[a,roadY] ="ro";
+                    tiles[a, roadY] = "ro";
                     //forrest[a,roadY] = false;
                     //usedspace[a,roadY-1]=true;
                     //usedspace[a,roadY+1]=true;
 
 
                 }
-                else if(tiles[a,roadY-1]=="bi")
+                else if (tiles[a, roadY - 1] == "bi")
                 {
-                    tiles[a,roadY] = "ro";
+                    tiles[a, roadY] = "ro";
                 }
                 else
-                
+
                 {
-                    if (a<width-3&&(tiles[a+1,roadY] == "ri1"||tiles[a+2,roadY] == "ri1"||tiles[a+3,roadY] == "ri1"||tiles[a+1,roadY] == "ri2"||tiles[a+2,roadY] == "ri2"||tiles[a+3,roadY] == "ri2"||tiles[a+1,roadY] == "ri3"||tiles[a+2,roadY] == "ri3"||tiles[a+3,roadY] == "ri3")||a>3&&(tiles[a-1,roadY+1] == "bi"||tiles[a-2,roadY+1] == "bi"||tiles[a-3,roadY+1] == "bi"))
+                    if (a < width - 3 && (tiles[a + 1, roadY] == "ri1" || tiles[a + 2, roadY] == "ri1" || tiles[a + 3, roadY] == "ri1" || tiles[a + 1, roadY] == "ri2" || tiles[a + 2, roadY] == "ri2" || tiles[a + 3, roadY] == "ri2" || tiles[a + 1, roadY] == "ri3" || tiles[a + 2, roadY] == "ri3" || tiles[a + 3, roadY] == "ri3") || a > 3 && (tiles[a - 1, roadY + 1] == "bi" || tiles[a - 2, roadY + 1] == "bi" || tiles[a - 3, roadY + 1] == "bi"))
                     {
                         tiles[a, roadY] = "ro";
                     }
@@ -188,14 +205,14 @@ for (int y = 0; y < height; y++)
                 }
             }
         } //gen forrest
-        if((x<width/5) && tiles[x,y] != "ro" && y!=0 && y!=height-1)
-        {   
-            
-            if(random.Next(0,x)< 1)
+        if ((x < width / 5) && tiles[x, y] != "ro" && y != 0 && y != height - 1)
+        {
+
+            if (random.Next(0, x) < 1)
             {
-            tiles[x,y] = "fo";
+                tiles[x, y] = "fo";
             }
-            
+
         }
     }
 }
