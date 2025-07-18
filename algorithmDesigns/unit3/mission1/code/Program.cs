@@ -14,16 +14,41 @@ var tiles = new string[width, height]; //ri1(river) ri2(riverleft) ri3(riverrigh
 
 //data perpering stage
 
-static List<int> GenerateCurve(int height, int intestive = 3)//max of 6 
+//gen curves it give number bween 0 and 2. 
+static List<int> GenerateCurve(int height, int intestive = 3)//min 0 max of 4 defult 3
 {
     var random = new Random();
     var curveValues = new List<int>();
 
-    int riverdirection = random.Next(intestive, 6);
+
 
     for (int x = 1; x < height; x++)
     {
-        
+        if (intestive > 4)//prevent only curves
+        {
+            intestive = 4;
+        }
+        int direction = random.Next(intestive, 6);
+        switch (direction)
+        {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+                //down
+                curveValues.Add(0);
+                break;
+            case 5:
+                //left
+                curveValues.Add(1);
+                break;
+            case 6:
+                //right
+                curveValues.Add(2);
+                break;
+        }
+
     }
 
     return curveValues;
